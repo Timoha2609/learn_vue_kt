@@ -17,9 +17,9 @@ console.log(carsArray)
 
 <template> 
 
-    <section class="cars" b-for="car in carsArray" :key='car'> 
+    <section class="cars" v-for="car in carsArray" :key='car'> 
 
-<carItem :car="car"/>
+    <carItem :car="car"/>
 
     </section>
 
