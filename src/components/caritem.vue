@@ -25,5 +25,12 @@ console.log(car)
 </template>
 
 <style scoped> 
-
+.car{
+    border: 1px solid;
+    border-radius: 10px;
+    width:200px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #fff;
+}
 </style>
