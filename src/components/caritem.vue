@@ -1,5 +1,10 @@
 <script setup>
 import { defineProps, computed } from "vue";
+import Card from 'primevue/card';
+import Chip from 'primevue/chip';
+
+
+
 const props = defineProps({
   car: {
     type: Object,
@@ -26,23 +31,31 @@ function changeColor(color){
 </script>
 
 <template>
-  <div class="car">
-    <img :src="carRemake.image" alt="car" />
-    <h2>{{ carRemake.brand }}</h2>
+    <card>
+        <template #header> 
+            <img :src="carRemake.image" alt="car" class="car-image" />
+        </template>
+    <template #title> {{ carRemake.brand }}</template>
+    
+    <template #content>    
     <p>Цена: {{ carRemake.price }}</p>
     <p>Год выпуска: {{ carRemake.year }}</p>
     <p>Объем двигателя: {{ carRemake.volume }}</p>
     <p>KPD: {{ carRemake.kpd }}</p>
     <p :style="`color: ${carRemake.color}`">Цвет: {{ carRemake.color }}</p>
-    <div class="chipes"> 
-        <span v-if="Number(carRemake.price.slice(0,-1))>2000000">Дорогой автомобиль</span>
-        <span v-else-if="Number(carRemake.year)<=1960">Старый</span>
-        <span v-else>Скучный</span>
-        <span v-if="changeColor(carRemake.color)">Так себе</span>
-        <span v-show="carRemake.volume>2">Большой объем</span>
-    </div>
+    </template>
 
-  </div>
+    <template #footer>
+
+        <Chip v-if="Number(carRemake.price.slice(0,-1))>1000000" label="Дорогой автомобиль" icon="pi pi-dollar" />
+        <Chip v-else-if="Number(carRemake.year)<=1960" label="Старый" icon="pi pi-history" />
+        <Chip v-else label="Скучный" icon="pi pi-volume-down" />
+        <Chip v-if="changeColor(carRemake.color)" label="Так себе" icon="pi pi-thumbs-down-fill" />
+        <Chip v-show="carRemake.volume>2" label="Большой объем" icon="pi pi-sort-amount-up" />
+
+    </template>
+
+</card>
 </template>
 
 <style scoped>
@@ -66,4 +79,5 @@ function changeColor(color){
   margin: 10px;
   background-color: #fff;
 }
+
 </style>
