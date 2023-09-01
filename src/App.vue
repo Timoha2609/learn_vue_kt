@@ -22,6 +22,7 @@ import carlist from '@/components/carlist.vue'
     
 <buttonDelete/>
 <carlist/>
+
 <footer class="footer">
 <p> made by KT </p>    
 </footer>
