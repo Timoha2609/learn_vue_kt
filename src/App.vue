@@ -7,6 +7,7 @@ import carlist from '@/components/carlist.vue'
 
 
 
+
 </script>
 
 <template>
@@ -20,12 +21,9 @@ import carlist from '@/components/carlist.vue'
 
     
     
-<buttonDelete/>
-<carlist/>
+<!-- <buttonDelete/> -->
 
-<footer class="footer">
-<p> made by KT </p>    
-</footer>
+<carlist/>
 
 </template>
 
@@ -44,12 +42,5 @@ import carlist from '@/components/carlist.vue'
 	text-decoration:none;
     padding: 10px 20px;
 }
-.footer{
-    background-color: #333; 
-    color: #fff; 
-    padding: 30px; 
-    position: fixed;
-    bottom: 0;
-    width:100%;
-}
+
 </style>

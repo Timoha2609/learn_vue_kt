@@ -8,7 +8,7 @@ import Chip from 'primevue/chip';
 const props = defineProps({
   car: {
     type: Object,
-    rquired: true,
+    required: true,
   },
 });
 
@@ -31,6 +31,7 @@ function changeColor(color){
 </script>
 
 <template>
+  <div class="card"> 
     <card>
         <template #header> 
             <img :src="carRemake.image" alt="car" class="car-image" />
@@ -56,28 +57,13 @@ function changeColor(color){
     </template>
 
 </card>
+</div>
 </template>
 
 <style scoped>
-.chipes{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-}
-.chipes span{
-    margin: 5px;
-    padding: 5px;
-    border:1px solid black;
-    border-radius: 5px;
-}
-.car {
-  border: 1px solid;
-  border-radius: 10px;
-  width: 200px;
-  padding: 20px;
-  margin: 10px;
-  background-color: #fff;
+.car-image{
+  width:200px;
+  height: 200px;
 }
 
 </style>
