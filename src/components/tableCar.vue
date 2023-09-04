@@ -19,8 +19,7 @@ console.log(props)
 
 
 <template>
-
-<DataTable v-model:filters="filters" :value="props.car">
+<DataTable :value="props.car" tableStyle="min-width: 50rem">
 <Column field="brand" header="Brand" style="width: 25%" sortable filter>
 </Column>
 <Column field="price" header="Price" style="width: 25%" sortable filter>
