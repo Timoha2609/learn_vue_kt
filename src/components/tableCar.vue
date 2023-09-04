@@ -1,17 +1,39 @@
-<script setup>
-import {defineProps,ref,watch,computed} from "vue";
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-import Dropdown from 'primevue/dropdown';
+<template>
+  <DataTable :value="cars">
+    <Column v-for="column in carColumns" :key="column.field" :field="column.field" :header="column.header">
+      <template #body="{ data }">
+        <template v-if="column.field === 'criticScore'">
+          <Dropdown :modelValue="data.criticalNumber" :options="numberMarks" optionLabel="mark" optionValue="mark" class="dropdown" @change="setCriticScore(data.criticalNumber, $event)" />
+        </template>
+        <template v-else>{{ data[column.field] }} </template>
+      </template>
+    </Column>
+  </DataTable>
+</template>
 
-const props=defineProps({
+<script setup>
+import { defineProps, ref, computed, watch } from 'vue'
+import DataTable from 'primevue/datatable'
+import Column from 'primevue/column'
+import Dropdown from 'primevue/dropdown'
+
+const props = defineProps({
   cars: {
     type: Array,
     required: true,
   },
-});
+})
 
-const cars=props.cars;
+const cars = props.cars
+
+function setCriticScore(criticalNumber, event) {
+  criticalNumber = event.value
+  console.log(criticalNumber)
+}
+
+watch(cars, () => {
+  console.log(cars)
+})
 
 const carColumns = [
   {
@@ -33,84 +55,47 @@ const carColumns = [
   {
     field: 'color',
     header: 'Цвет',
-  },  
+  },
   {
-    field: 'criticsscore',
-    header: 'Оценка и критика',
-  },  
-   
+    field: 'criticScore',
+    header: 'Оценка критика',
+  },
 ]
-
-const criticalArray=computed(()=>{
-  return cars.map((car)=> {
-    const temp=ref(car.criticalnumber)
-    car.criticalnumber=temp.value
-    return car
-  })  
-})
-
-console.log(criticalArray.value)
-
-function changedropdown(value){
-  console.log(value)
-}
-
-
 
 const numberMarks = [
   {
-  mark: 0,
-  header: "Это Део Нексия"
- },
- {
-  mark: 1,
-  header: "Очень плохо"
- },
+    mark: 0,
+    header: 'Это Део Нексия',
+  },
+  {
+    mark: 1,
+    header: 'Очень плохо',
+  },
   {
     mark: 2,
-    header: "Плохо"
+    header: 'Плохо',
   },
   {
     mark: 3,
-    header: "Нормально"
+    header: 'Нормально',
   },
   {
     mark: 4,
-    header: "Хорошо"
+    header: 'Хорошо',
   },
   {
     mark: 5,
-    header: "Отлично"
+    header: 'Отлично',
   },
   {
     mark: 6,
-    header: "Это Бентли"
+    header: 'Это Бентли',
   },
 ]
 </script>
 
-
-
-<template>
-
-
-<DataTable :value="cars">
-  <Column v-for="column in carColumns" :key="column.field" :field="column.field" :header="column.header">
-    <template #body="{data}">
-      <template v-if="column.field ==='criticsscore'">
-        <Dropdown @change="changedropdown" v-model="data[column['Оценка и критика']]" :options="numberMarks" optionLabel="header" class="drpodown"/>
-      </template>
-      <template v-else>{{data[column.field]}} </template>
-    </template>
-</Column>
-</DataTable>
-
-
-</template>
-
 <style scoped>
-.drpodown{
-  width:100%;
+.dropdown {
+  width: 100%;
 }
-    
 </style>
