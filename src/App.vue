@@ -2,7 +2,7 @@
 
 import buttonDelete from '@/components/buttonDelete.vue'
 import carlist from '@/components/carlist.vue'
-
+import sidebar from '@/components/SideBar.vue'
 
 
 
@@ -11,6 +11,9 @@ import carlist from '@/components/carlist.vue'
 </script>
 
 <template>
+
+
+
 <div>
     <ul class="nav">
         <li>Home</li>
@@ -19,10 +22,9 @@ import carlist from '@/components/carlist.vue'
       </ul>
  </div>
 
-    
-    
-<!-- <buttonDelete/> -->
-
+ <sidebar/>
+ 
+ <!-- <buttonDelete/> -->
 <carlist/>
 
 </template>
