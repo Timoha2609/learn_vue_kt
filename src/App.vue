@@ -4,7 +4,7 @@ import buttonDelete from '@/components/buttonDelete.vue'
 import carlist from '@/components/carlist.vue'
 import sidebar from '@/components/SideBar.vue'
 import tablecar from "@/components/tableCar.vue"
-
+import toast from "@/components/toast.vue"
 
 const cars=[
     {
@@ -53,10 +53,13 @@ const cars=[
 <template>
 
  <sidebar/>
- 
- <!-- <buttonDelete/> -->
 
+ <!-- <buttonDelete/> -->
+ <toast/>
+ 
 <carlist :cars="cars"/>
+
+
 
 <tablecar :cars="cars"/>
 
