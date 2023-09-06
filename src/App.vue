@@ -5,6 +5,8 @@ import carlist from '@/components/carlist.vue'
 import sidebar from '@/components/SideBar.vue'
 import tablecar from "@/components/tableCar.vue"
 import toast from "@/components/toast.vue"
+import navbar from "@/components/layouts/Navbar.vue"
+
 
 const cars=[
     {
@@ -51,8 +53,9 @@ const cars=[
 </script>
 
 <template>
-
+<navbar/>
  <sidebar/>
+ 
 
  <!-- <buttonDelete/> -->
  <toast/>
