@@ -6,19 +6,19 @@ import { useToast } from "primevue/usetoast";
 const toast = useToast();
 
 const showSuccess = () => {
-    toast.add({ severity: 'success', summary: 'Success Message', detail: 'Message Content', life: 3000 });
+    toast.add({ severity: 'success', summary: 'Успех', detail: 'Сообщение дошло', life: 5000 });
 };
 
 const showInfo = () => {
-    toast.add({ severity: 'info', summary: 'Info Message', detail: 'Message Content', life: 3000 });
+    toast.add({ severity: 'info', summary: 'Информационный вывод', detail: 'Сообщение дошло', life: 4000 });
 };
 
 const showWarn = () => {
-    toast.add({ severity: 'warn', summary: 'Warn Message', detail: 'Message Content', life: 3000 });
+    toast.add({ severity: 'warn', summary: 'Предупреждение', detail: 'Сообщение дошло', life: 3000 });
 };
 
 const showError = () => {
-    toast.add({ severity: 'error', summary: 'Error Message', detail: 'Message Content', life: 3000 });
+    toast.add({ severity: 'error', summary: 'Ошибка вывода', detail: 'Сообщение дошло', life: 2000 });
 };
 
 
@@ -28,10 +28,10 @@ const showError = () => {
     <div class="toast card flex justify-content-center">
         <Toast />
         <div class="flex flex-wrap gap-2">
-            <Button label="Success" severity="success" @click="showSuccess" />
-            <Button label="Info" severity="info" @click="showInfo" />
-            <Button label="Warn" severity="warning" @click="showWarn" />
-            <Button label="Error" severity="danger" @click="showError" />
+            <Button label="Успех" severity="success" @click="showSuccess" />
+            <Button label="Информационный вывод" severity="info" @click="showInfo" />
+            <Button label="Предупреждение" severity="warning" @click="showWarn" />
+            <Button label="Ошибка вывода" severity="danger" @click="showError" />
         </div>
     </div>
 
