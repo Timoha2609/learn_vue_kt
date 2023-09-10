@@ -15,13 +15,16 @@ export const useAuto = () => {
   })
 
   async function createAuto() {
-    loading.value.newAuto = true
-
-    newAuto.value = {
-      name: 'Toyota',
-      model: 'Corolla',
+    loading.value.newAuto = true;
+    newAuto.value={//обратно добавил удали
+      name:'Ferrari',
+      model:'F300',
+      price:"2000000",
+      year:1994,
+      volume:2.4,
+      color:"#480607",
+      image:'',
     }
-
     try {
       await addDoc(collection(db, 'autos'), newAuto.value).then(() => {
         console.log('Cars added')
@@ -31,7 +34,24 @@ export const useAuto = () => {
     }
   }
 
+  async function getAutoList() {
+    loading.value.autoList = true
+    try {
+      const querySnapshot = await getDocs(collection(db, 'autos'))
+      querySnapshot.forEach((doc) => {
+        autoList.value.push(doc.data())
+      })
+    } catch (e) {
+      console.error('Error: ', e)
+    } finally {
+      loading.value.autoList = false
+    }
+  }
+
   return {
     createAuto,
+    getAutoList,
+    auto,
+    autoList,
   }
 }

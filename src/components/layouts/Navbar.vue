@@ -13,10 +13,12 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { onMounted } from 'vue'
 import { useAuto } from '@/composable/useAuto'
 
-const { auto, createAuto } = useAuto()
+const { autoList,createAuto, getAutoList} = useAuto()
 
 onMounted(async () => {
-  await createAuto()
+  await createAuto()//Сам добавил удали
+  await getAutoList()
+  console.log(autoList.value)
 })
 
 const googleRegister = () => {
