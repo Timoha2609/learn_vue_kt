@@ -5,17 +5,18 @@ import { ref } from 'vue'
 
 export const useAuto = () => {
   const auto = ref({
-    id:'',
-    name:'',
-    model:'',
-    price:"",
-    body:'',
-    steering_wheel:'',
-    saled:false,
-    year:0,
-    volume:0,
-    color:"",
-    image:'',
+    id: '',
+    brand: '',
+    price: '',
+    saled: false,
+    city: '',
+    carcase: '',
+    volume: '',
+    color: '',
+    gear: '',
+    year: '',
+    travel: '',
+    images: [],
   })
   const autoList = ref([])
   const newAuto = ref({})
@@ -57,5 +58,6 @@ export const useAuto = () => {
     getAutoList,
     auto,
     autoList,
+    loading
   }
 }
