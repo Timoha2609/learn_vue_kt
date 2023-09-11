@@ -4,7 +4,19 @@ import { getStorage, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { ref } from 'vue'
 
 export const useAuto = () => {
-  const auto = ref(null)
+  const auto = ref({
+    id:'',
+    name:'',
+    model:'',
+    price:"",
+    body:'',
+    steering_wheel:'',
+    saled:false,
+    year:0,
+    volume:0,
+    color:"",
+    image:'',
+  })
   const autoList = ref([])
   const newAuto = ref({})
 
@@ -16,15 +28,7 @@ export const useAuto = () => {
 
   async function createAuto() {
     loading.value.newAuto = true;
-    newAuto.value={//обратно добавил удали
-      name:'Ferrari',
-      model:'F300',
-      price:"2000000",
-      year:1994,
-      volume:2.4,
-      color:"#480607",
-      image:'',
-    }
+
     try {
       await addDoc(collection(db, 'autos'), newAuto.value).then(() => {
         console.log('Cars added')
