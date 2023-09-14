@@ -1,6 +1,6 @@
 <script setup>
 
-import buttonDelete from '@/components/buttonDelete.vue'
+import Snizutabl from '@/components/footer.vue'
 import carlist from '@/components/carlist.vue'
 import sidebar from '@/components/SideBar.vue'
 import tablecar from "@/components/tableCar.vue"
@@ -56,7 +56,7 @@ import carAddModul from "@/components/carAddModul.vue"
 <navbar/>
  <sidebar/>
  
-<!-- <buttonDelete/> -->
+
 
 <toast/>
 <carAddModul/>
@@ -64,6 +64,9 @@ import carAddModul from "@/components/carAddModul.vue"
 
 <tablecar/>
 
+
+
+<Snizutabl/>
 
 </template>
 

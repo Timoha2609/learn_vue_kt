@@ -1,8 +1,8 @@
 <template>
   <div class="card relative z-2">
-  <Menubar :model="items" buttonProps   />
+  <Menubar :model="items" />
   <button type="button" class="p-link p-ml-auto" @click="googleRegister">
-    <i class="pi pi-user"></i>
+    <i :class="checkUser() ? 'pi pi-sign-out' : 'pi pi-user'"></i>
   </button>
   <button type="button" class="p-link p-ml-auto" @click="createAuto">
     <i class="pi pi-plus"></i>
@@ -14,8 +14,14 @@
 <script setup>
 import Button from 'primevue/button'
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import { onMounted } from 'vue'
+import { useAuto } from '@/composable/useAuto'
 import Menubar from 'primevue/menubar';
 import { ref } from "vue";
+
+const checkUser= () => {
+  return localStorage.getItem('user') !== null;
+}
 
 const items = ref([
     {
@@ -141,6 +147,12 @@ const items = ref([
     }
 ]);
 
+const { autoList, getAutoList} = useAuto()
+
+onMounted(async () => {
+  await getAutoList()
+  console.log(autoList.value)
+})
 
 const googleRegister = () => {
   const auth = getAuth()
