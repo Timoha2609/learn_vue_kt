@@ -5,7 +5,7 @@
         <ColorPicker v-model="auto.data.color" disabled />
       </template>
       <template v-else-if="column.field === 'saled'" #body="auto">
-        <input type="checkbox" v-model="auto.data.saled" disabled />
+        <Checkbox v-model="auto.data.saled" :binary="true" disabled />
       </template>
     </Column>
   </DataTable>
@@ -18,6 +18,7 @@ import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import { useAuto } from '@/composable/useAuto'
 import ColorPicker from 'primevue/colorpicker';
+import Checkbox from 'primevue/checkbox';
 
 const { autoListRemake, getAutoList,loading} = useAuto()
 

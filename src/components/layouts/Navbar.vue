@@ -2,7 +2,7 @@
   <div class="card relative z-2">
   <Menubar :model="items" />
   <button type="button" class="p-link p-ml-auto" @click="googleRegister">
-    <i :class="checkUser() ? 'pi pi-sign-out' : 'pi pi-user'"></i>
+    <i :class="checkUser() ? 'pi pi-times' : 'pi pi-user'"></i>
   </button>
   <button type="button" class="p-link p-ml-auto" @click="createAuto">
     <i class="pi pi-plus"></i>
