@@ -1,15 +1,21 @@
 <template>
+
   <DataTable :value="autoListRemake" :loading="loading.autoList">
     <Column v-for="column in carColumns" :key="column.field" :field="column.field" :header="column.header">
-      <template v-if="column.field === 'color'" #body="auto">
-        <ColorPicker v-model="auto.data.color" disabled />
-      </template>
-      <template v-else-if="column.field === 'saled'" #body="auto">
-        <Checkbox v-model="auto.data.saled" :binary="true" disabled />
+      {{ column.field }}
+      <template #body="slotProps">
+        <span v-if="column.field === 'saled'">
+          <Checkbox v-model="slotProps.data.saled" binary checked readonly />
+        </span>
+        <span v-else-if="column.field === 'color'">
+          <ColorPicker v-model="slotProps.data.color" disabled />
+        </span>
+        <span v-else>{{ slotProps.data[column.field] }}</span>
       </template>
     </Column>
   </DataTable>
-  
+
+
 </template>
 
 <script setup>
@@ -49,5 +55,8 @@ const carColumns = [
 </script>
 
 <style scoped>
+:deep(.p-disabled){
+  opacity:1 !important
+}
 
 </style>

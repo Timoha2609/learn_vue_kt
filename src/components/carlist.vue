@@ -1,15 +1,17 @@
 <script setup>
 import carItem from "@/components/caritem.vue"
 
-import { defineProps} from "vue";
+import {onMounted} from "vue";
+import { useAuto } from '@/composable/useAuto'
+const {autoListRemake,getAutoList} = useAuto()
+
+onMounted(async()=>{
+  await getAutoList();
+})
 
 
-defineProps({
-  cars: {
-    type: Array,
-    required: true,
-  },
-});
+
+
 
 
 </script>
@@ -17,8 +19,8 @@ defineProps({
 <template> 
 
     <div class="mashin">
-        <section class="cars" v-for="car in cars" :key='car'> 
-            <carItem :car="car"/>
+        <section class="cars" v-for="auto in autoListRemake" :key='auto'> 
+            <carItem :auto="auto"/>
             </section>    
     </div>
 
@@ -32,6 +34,7 @@ defineProps({
 <style scoped> 
 .mashin{
     display:flex;
+    padding: 15px;
 }
 
 </style>

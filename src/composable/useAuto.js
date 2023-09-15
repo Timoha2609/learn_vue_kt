@@ -17,7 +17,7 @@ export const useAuto = () => {
     carcase: '',
     gear: '',
     travel: 0,
-    images: null,
+    image: null,
     saled: false,
   })
 
@@ -49,8 +49,6 @@ export const useAuto = () => {
   })
 
 const autoListRemake=computed(()=>{
-
-
   const _autoListRemake=autoList.value.map((auto)=>{
     auto.price=`${parseInt(auto.price)} KZT`
     auto.volume=`${auto.volume} л`

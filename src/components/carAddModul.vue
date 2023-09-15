@@ -58,6 +58,12 @@
                 <InputText id="travel" v-model.number="newAuto.travel" />
                 <Slider id="travel" v-model="newAuto.travel" :min="0" :max="500000" :step="1000"/>
               </div>
+              <div class="p-field">
+                <label for="photo">Картинки</label>
+                <FileUpload id="photo" v-model="newAuto.image" 
+                mode="basic" accept="image/*" maxFileSize="1000000"
+                @select="onUpload"/>
+                </div>
             </div>
           </template>
      <template #footer> 
@@ -79,6 +85,7 @@ import ColorPicker from 'primevue/colorpicker';
 import RadioButton from 'primevue/radiobutton';
 import Slider from 'primevue/slider';
 import { useAuto } from '@/composable/useAuto';
+import FileUpload from 'primevue/fileupload';
 
 const{newAuto,createAuto,loading,clear}=useAuto()
 
@@ -100,6 +107,7 @@ function clearAuto(){
   clear()
   toogleVisible()
 }
+
 
 
 const brandLabel = [

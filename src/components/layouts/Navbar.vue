@@ -151,7 +151,6 @@ const { autoList, getAutoList} = useAuto()
 
 onMounted(async () => {
   await getAutoList()
-  console.log(autoList.value)
 })
 
 const googleRegister = () => {
