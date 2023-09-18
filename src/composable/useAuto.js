@@ -3,6 +3,7 @@ import { db } from '@/firebases'
 import { getStorage, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { ref,computed } from 'vue'
 import {createID,formatDate} from '@/services/methods'
+import * as firebase from 'firebase/storage'
 
 export const useAuto = () => {
 
@@ -87,6 +88,30 @@ const autoListRemake=computed(()=>{
     }
   }
 
+  async function uploadImage(file) {
+    console.log(file)
+    const storage = getStorage()
+    console.log(storage)
+    const storageRef = firebase.ref(storage, 'autos/' + file.name)
+    console.log(storageRef)
+
+    uploadBytes(storageRef, file)
+      .then(() => {
+        console.log('Файл успешно загружен!')
+
+      firebase
+        .getDownloadURL(storageRef)
+          .then((downloadURL) => {
+            newAuto.value.image = downloadURL
+          })
+          .catch((error) => {
+            console.error('Ошибка получения ссылки на загруженный файл:', error)
+          })
+      })
+      .catch((error) => {
+        console.error('Ошибка загрузки файла:', error)
+      })
+  }
 
 
   return {
@@ -97,5 +122,6 @@ const autoListRemake=computed(()=>{
     loading,
     newAuto,
     clear,
+    uploadImage
   }
 }

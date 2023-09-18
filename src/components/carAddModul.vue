@@ -59,10 +59,15 @@
                 <Slider id="travel" v-model="newAuto.travel" :min="0" :max="500000" :step="1000"/>
               </div>
               <div class="p-field">
-                <label for="photo">Картинки</label>
-                <FileUpload id="photo" v-model="newAuto.image" 
-                mode="basic" accept="image/*" maxFileSize="1000000"
-                @select="onUpload"/>
+              <form class="input__wrapper" enctype="multipart/form-data">
+              <input id="inputfile" class="input inputfile" name="images" type="file" accept=".jpg, .png" @input="onUpload($event)" />
+              <label for="inputfile" class="inputfile-button">
+              <span class="input__file-icon-wrapper">
+              <img class="input__file-icon" src="@/assets/uploadImage.png" alt="Выбрать файл" width="25" />
+              </span>
+              <span class="input__file-button-text"> Загрузи картинку машины</span>
+            </label>
+              </form>
                 </div>
             </div>
           </template>
@@ -85,9 +90,9 @@ import ColorPicker from 'primevue/colorpicker';
 import RadioButton from 'primevue/radiobutton';
 import Slider from 'primevue/slider';
 import { useAuto } from '@/composable/useAuto';
-import FileUpload from 'primevue/fileupload';
 
-const{newAuto,createAuto,loading,clear}=useAuto()
+
+const{newAuto,createAuto,loading,clear,uploadImage}=useAuto()
 
 const visible = ref(false);
 
@@ -96,6 +101,10 @@ const toogleVisible=()=>{
 }
 
 
+async function onUpload(e) {
+  const image = e.target.files[0]
+  await uploadImage(image)
+}
 
 
 async function addAuto(){
@@ -153,5 +162,19 @@ const carcasec=[
 
 
 <style scoped> 
+
+.input__wrapper {
+  width: 100%;
+  position: relative;
+  margin: 15px 0;
+  text-align: center;
+} 
+.inputfile {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+
 
 </style>

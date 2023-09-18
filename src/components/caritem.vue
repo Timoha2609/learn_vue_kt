@@ -41,8 +41,8 @@ function changeColor(color){
 
     <template #footer>
 
-        <Chip v-if="Number(auto.price.slice(0,-1))>1000000" label="Дорогой автомобиль" icon="pi pi-dollar" />
-        <Chip v-else-if="Number(auto.year)<=1960" label="Старый" icon="pi pi-history" />
+        <Chip v-if="Number(auto.price.slice(0,-3))>10000000" label="Дорогой автомобиль" icon="pi pi-dollar" />
+        <Chip v-else-if="Number(auto.year)<=1998" label="Старый" icon="pi pi-history" />
         <Chip v-else label="Скучный" icon="pi pi-volume-down" />
         <Chip v-if="changeColor(auto.color)" label="Так себе" icon="pi pi-thumbs-down-fill" />
         <Chip v-show="auto.volume>2" label="Большой объем" icon="pi pi-sort-amount-up" />
@@ -54,6 +54,8 @@ function changeColor(color){
 </template>
 
 <style scoped>
-
+.car-image{
+  max-width: 200px;
+}
 
 </style>

@@ -35,6 +35,7 @@ onMounted(async()=>{
 .mashin{
     display:flex;
     padding: 15px;
+    margin: auto;
 }
 
 </style>

@@ -16,7 +16,7 @@ import Fieldset from 'primevue/fieldset';
 </template>
 
 <style scoped> 
-.footer,.fieldset{
+.footer{
   background-color: #00bcd4;
   color: white;
   padding: 20px 0;
@@ -35,6 +35,11 @@ import Fieldset from 'primevue/fieldset';
 :deep(.p-fieldset-legend-text){
   color:#EF9A9A !important;
 }
+
+:deep(.p-icon){
+  color:#EF9A9A !important;
+}
+
 
 :deep(.p-fieldset-toggleable){
   background-color: #90CAF9 !important;
