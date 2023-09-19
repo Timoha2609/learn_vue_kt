@@ -32,10 +32,16 @@ onMounted(async()=>{
 </template>
 
 <style scoped> 
-.mashin{
-    display:flex;
-    padding: 15px;
-    margin: auto;
+.mashin {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: flex-start; 
+    gap: 20px;
 }
+
+
+.cars {
+    padding: 15px; 
+  }
 
 </style>

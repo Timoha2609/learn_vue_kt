@@ -55,7 +55,7 @@ function changeColor(color){
 
 <style scoped>
 .car-image{
-  max-width: 200px;
+  max-width: 190px;
 }
 
 </style>

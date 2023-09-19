@@ -1,12 +1,16 @@
 <template>
   <div class="card relative z-2">
-  <Menubar :model="items" />
+  <Menubar :model="items">
+    </Menubar>
+    <carAddModul/>
   <button type="button" class="p-link p-ml-auto" @click="googleRegister">
     <i :class="checkUser() ? 'pi pi-times' : 'pi pi-user'"></i>
   </button>
   <button type="button" class="p-link p-ml-auto" @click="createAuto">
     <i class="pi pi-plus"></i>
+
   </button>
+
 </div>
 
 </template>
@@ -18,6 +22,7 @@ import { onMounted } from 'vue'
 import { useAuto } from '@/composable/useAuto'
 import Menubar from 'primevue/menubar';
 import { ref } from "vue";
+import carAddModul from "@/components/carAddModul.vue"
 
 const checkUser= () => {
   return localStorage.getItem('user') !== null;
