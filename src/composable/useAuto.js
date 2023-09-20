@@ -2,13 +2,13 @@ import { collection, getDocs, addDoc } from 'firebase/firestore'
 import { db } from '@/firebases'
 import { getStorage, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { ref,computed } from 'vue'
-import {createID,formatDate} from '@/services/methods'
+import {createId,formatDate} from '@/services/methods'
 import * as firebase from 'firebase/storage'
 
 export const useAuto = () => {
 
   const newAuto = ref({
-    id:createID(),
+    id:createId(),
     brand: '',
     price: '',
     year: '',
@@ -22,24 +22,6 @@ export const useAuto = () => {
     saled: false,
   })
 
-  function clear() {
-    newAuto.value = {
-      id:'',
-      brand: '',
-      price: '',
-      year: '',
-      volume: '',
-      color: '',
-      city: '',
-      carcase: '',
-      gear: '',
-      travel: 0,
-      image: null,
-      saled: false,
-    }
-    autoList.value = []
-    auto.value = null
-  }
   const autoList = ref([])
   const auto = ref({})
 
@@ -88,6 +70,25 @@ const autoListRemake=computed(()=>{
     }
   }
 
+
+  async function getAuto(id){
+    loading.value.auto=true
+    try{
+      const querySnapshot=await getDocs(collection(db,'autos'))
+      querySnapshot.forEach((doc)=>{
+        if(doc.data().id===id){
+          auto.value=doc.data()
+        }
+      })
+    }
+    catch(e){
+      console.log('Error',e)
+    }
+    finally{
+      loading.value.auto=false
+    }
+  }
+
   async function uploadImage(file) {
     console.log(file)
     const storage = getStorage()
@@ -112,12 +113,32 @@ const autoListRemake=computed(()=>{
         console.error('Ошибка загрузки файла:', error)
       })
   }
+  
+  function clear() {
+    newAuto.value = {
+      id:'',
+      brand: '',
+      price: '',
+      year: '',
+      volume: '',
+      color: '',
+      city: '',
+      carcase: '',
+      gear: '',
+      travel: 0,
+      image: null,
+      saled: false,
+    }
+    autoList.value = []
+    auto.value = null
+  }
 
 
   return {
     createAuto,
     getAutoList,
     auto,
+    getAuto,
     autoListRemake,
     loading,
     newAuto,

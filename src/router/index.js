@@ -26,6 +26,12 @@ const router = createRouter({
     }
     ,
     {
+      path: '/car/:id',
+      name: 'car',
+      component: () => import ('../views/CardIdPage.vue'),
+    }
+    ,
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import ('../views/NotFoundPage.vue'),
