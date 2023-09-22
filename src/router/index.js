@@ -12,7 +12,7 @@ const router = createRouter({
     {
       path: '/table',
       name: 'table',
-      component: () => import ('../views/tablePage.vue'),
+      component: () => import ('../views/TablePage.vue'),
     },
     {
       path: '/cards',
