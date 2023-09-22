@@ -4,10 +4,12 @@
         <template #title>{{ auto.brand }}</template>
         
         <template #content>    
-          <p>Цена: {{ auto.price }}</p>
+          <p>Цена: {{ auto.price }} тенге</p>
           <p>Год выпуска: {{ auto.year }}</p>
+          <p>Пробег: {{ auto.travel }} км</p>
           <p>Объем двигателя: {{ auto.volume }}</p>
-          <p :style="`color: ${auto.color}`">Цвет: {{ auto.color }}</p>
+          <p>Кузов: {{ auto.carcase }}</p>
+          <p :style="`color: #${auto.color}`">Цвет: {{ auto.color }}</p>
           <img :src="auto.image" alt="car" class="car-image" />
         </template>
   

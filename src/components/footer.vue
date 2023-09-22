@@ -17,8 +17,7 @@ import Fieldset from 'primevue/fieldset';
 
 <style scoped> 
 .footer{
-  background-color: #00bcd4;
-  color: white;
+  background-color: #1e1e1e;
   padding: 20px 0;
   text-align: center;
   position: relative;
@@ -42,7 +41,7 @@ import Fieldset from 'primevue/fieldset';
 
 
 :deep(.p-fieldset-toggleable){
-  background-color: #90CAF9 !important;
+  background-color: #1e1e1e!important;
   color:#C5E1A5 !important;
 }
 
