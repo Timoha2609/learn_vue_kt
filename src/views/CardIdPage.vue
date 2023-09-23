@@ -5,7 +5,6 @@
         
         <template #content>    
           <p>Цена: {{ auto.price }} тенге</p>
-          <p>Год выпуска: {{ auto.year }}</p>
           <p>Пробег: {{ auto.travel }} км</p>
           <p>Объем двигателя: {{ auto.volume }}</p>
           <p>Кузов: {{ auto.carcase }}</p>

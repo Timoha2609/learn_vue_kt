@@ -14,7 +14,6 @@ import {RouterView} from 'vue-router'
 
 <template>
 <navbar/>
-<sidebar/>
 <router-view/>
 
 <Snizutabl/>

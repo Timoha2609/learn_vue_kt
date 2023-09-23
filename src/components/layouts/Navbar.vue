@@ -1,22 +1,28 @@
 <template>
-  <div class="card relative z-2">
-  <Menubar :model="items">
-    </Menubar>
-    <carAddModul/>
-  <button type="button" class="p-link p-ml-auto" @click="googleRegister">
-    <i :class="checkUser() ? 'pi pi-times' : 'pi pi-user'"></i>
-  </button>
-  <button type="button" class="p-link p-ml-auto" @click="createAuto">
-    <i class="pi pi-plus"></i>
-
-  </button>
-
+    <div class="card relative z-2">
+        <Menubar :model="items">
+            <template #item="{ label, item, props, root, hasSubmenu }">
+                <router-link v-if="item.route" v-slot="routerProps" :to="item.route" custom>
+                    <a :href="routerProps.href" v-bind="props.action">
+                        <span v-bind="props.icon" />
+                        <span v-bind="props.label">{{ label }}</span>
+                    </a>
+                </router-link>
+                <a v-else :href="item.url" :target="item.target" v-bind="props.action">
+                    <span v-bind="props.icon" />
+                    <span v-bind="props.label">{{ label }}</span>
+                    <span :class="[hasSubmenu && (root ? 'pi pi-fw pi-angle-down' : 'pi pi-fw pi-angle-right')]" v-bind="props.submenuicon" />
+                </a>
+            </template>
+            <template #end>
+              <carAddModul/>
+              </template>
+        </Menubar>
 </div>
 
 </template>
 
 <script setup>
-import Button from 'primevue/button'
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { onMounted } from 'vue'
 import { useAuto } from '@/composable/useAuto'
@@ -28,59 +34,13 @@ const checkUser= () => {
   return localStorage.getItem('user') !== null;
 }
 
+
+
 const items = ref([
     {
-        label: 'File',
-        icon: 'pi pi-fw pi-file',
-        items: [
-            {
-                label: 'New',
-                icon: 'pi pi-fw pi-plus',
-                items: [
-                    {
-                        label: 'Bookmark',
-                        icon: 'pi pi-fw pi-bookmark'
-                    },
-                    {
-                        label: 'Video',
-                        icon: 'pi pi-fw pi-video'
-                    }
-                ]
-            },
-            {
-                label: 'Delete',
-                icon: 'pi pi-fw pi-trash'
-            },
-            {
-                separator: true
-            },
-            {
-                label: 'Export',
-                icon: 'pi pi-fw pi-external-link'
-            }
-        ]
-    },
-    {
-        label: 'Edit',
-        icon: 'pi pi-fw pi-pencil',
-        items: [
-            {
-                label: 'Left',
-                icon: 'pi pi-fw pi-align-left'
-            },
-            {
-                label: 'Right',
-                icon: 'pi pi-fw pi-align-right'
-            },
-            {
-                label: 'Center',
-                icon: 'pi pi-fw pi-align-center'
-            },
-            {
-                label: 'Justify',
-                icon: 'pi pi-fw pi-align-justify'
-            }
-        ]
+        label: 'home',
+        icon: 'pi pi-eject',
+        route: '/'
     },
     {
         label: 'Users',
@@ -88,32 +48,11 @@ const items = ref([
         items: [
             {
                 label: 'New',
-                icon: 'pi pi-fw pi-user-plus'
+                icon: 'pi pi-fw pi-user-plus',
+                command: () => {googleRegister()
+        }
             },
-            {
-                label: 'Delete',
-                icon: 'pi pi-fw pi-user-minus'
-            },
-            {
-                label: 'Search',
-                icon: 'pi pi-fw pi-users',
-                items: [
-                    {
-                        label: 'Filter',
-                        icon: 'pi pi-fw pi-filter',
-                        items: [
-                            {
-                                label: 'Print',
-                                icon: 'pi pi-fw pi-print'
-                            }
-                        ]
-                    },
-                    {
-                        icon: 'pi pi-fw pi-bars',
-                        label: 'List'
-                    }
-                ]
-            }
+            
         ]
     },
     {
@@ -121,37 +60,18 @@ const items = ref([
         icon: 'pi pi-fw pi-calendar',
         items: [
             {
-                label: 'Edit',
-                icon: 'pi pi-fw pi-pencil',
-                items: [
-                    {
-                        label: 'Save',
-                        icon: 'pi pi-fw pi-calendar-plus'
-                    },
-                    {
-                        label: 'Delete',
-                        icon: 'pi pi-fw pi-calendar-minus'
-                    }
-                ]
+                label: 'Table',
+                icon: 'pi pi-microsoft',
+                route: '/table'
             },
             {
-                label: 'Archieve',
-                icon: 'pi pi-fw pi-calendar-times',
-                items: [
-                    {
-                        label: 'Remove',
-                        icon: 'pi pi-fw pi-calendar-minus'
-                    }
-                ]
+                label: 'Cards',
+                icon: 'pi pi-server',
+                route: '/cards'
             }
         ]
     },
-    {
-        label: 'Quit',
-        icon: 'pi pi-fw pi-power-off'
-    }
 ]);
-
 const { autoList, getAutoList} = useAuto()
 
 onMounted(async () => {
